@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Valores de un Rango</title>
+</head>
+<body>
+    <h1>Generar Rango de Numeros</h1>
+    <form id="FormRango">
+        <label for="inicio">Numero inicial:</label>
+        <input type="number" id="inicio" required>
+        <br>
+        <br>
+        <label for="fin">Numero final:</label>
+        <input type="number" id="fin" required>
+        <br>
+        <br>
+        <button type="submit">Generar</button>
+    </form>
+    
+    <h2>Resultado:</h2>
+    <pre id="resultado"></pre>
+
+    <script>
+        function crearRango(inicio, fin) {
+            if (inicio > fin) {
+                [inicio, fin] = [fin, inicio];
+            }
+            const rango = [];
+            for (let numInicial = inicio; numInicial <= fin; numInicial++) {
+                rango.push(numInicial);
+            }
+            return rango;
+        }
+
+        document.getElementById('FormRango').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inicio = parseInt(document.getElementById('inicio').value);
+            const fin = parseInt(document.getElementById('fin').value);
+            const resultado = crearRango(inicio, fin);
+            const cantidadRango = resultado.length;
+            document.getElementById('resultado').textContent =  "Los numeros dentro del rango son: " + resultado.join(', ') +  "\n\nCantidad de valores dentro del rango: " + cantidadRango;;
+            
+        });
+    </script>
+</body>
+</html>
